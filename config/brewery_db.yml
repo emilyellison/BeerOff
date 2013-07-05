@@ -1,0 +1,8 @@
+development:
+  api_key: 65481013cd1623316b0759e7bd90e29b
+
+test:
+  api_key: 65481013cd1623316b0759e7bd90e29b
+
+production:
+  api_key: 65481013cd1623316b0759e7bd90e29b
