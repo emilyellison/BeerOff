@@ -8,6 +8,10 @@ class BreweryDb
   def self.categories
     json_parse "/categories"
   end
+  
+  def self.styles
+    json_parse "/styles"
+  end
       
   def self.json_parse query
     JSON.parse(open("http://api.brewerydb.com/v2#{query}/?key=#{api_key}").read)

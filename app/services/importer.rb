@@ -9,7 +9,7 @@ class Importer
   end
   
   def validate
-    raise ArgumentError, "Can only import categories" if ![ Category ].include?(@class_name)
+    raise ArgumentError, "Can only import categories and styles" if ![ Category, Style ].include?(@class_name)
   end
   
   def normalize
@@ -23,7 +23,8 @@ class Importer
   private
     
     def scrub_hash datum
-      datum.keep_if {|key, value| @class_name.fields.keys.include?(key) || key == 'id'}
+      # datum = Hash[ datum.map{|(k,v)| [ k.underscore ,v ]} ]
+      datum.keep_if {|key, value| @class_name.fields.keys.include?(key) || key == 'id' }
     end
     
     def create_or_update_from datum
