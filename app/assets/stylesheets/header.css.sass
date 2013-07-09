@@ -1,0 +1,53 @@
+header
+  height: 60px
+  
+  a.brand
+    font-size: 30px
+    line-height: 60px
+    float: left
+    color: darkred
+    
+    &:hover
+      color: white
+      
+  ul.nav
+    float: right
+    height: 60px
+    
+    li 
+      float: left
+      
+      a
+        font-size: 18px
+        line-height: 60px
+        color: darkred
+        padding: 5px 20px
+        
+        &:hover, &.active
+          color: white
+          
+      input
+        font-size: 14px
+        margin: 16px 0px 16px 20px
+        padding: 5px 10px
+        border: 1px solid sienna
+        box-shadow: 0px 0px 5px grey inset
+        -moz-box-shadow: 0px 0px 5px grey inset
+        -webkit-box-shadow: 0px 0px 5px grey inset
+        @include border-radius-50
+        
+        &:focus
+          outline: none
+          
+      input.submit
+        padding: 5px 20px
+        background-color: darkred
+        color: white
+        cursor: pointer
+        border: 1px solid maroon
+        @include border-radius-50
+        @include no-box-shadow
+        
+        &:hover, &.active
+          background-color: maroon
+        
