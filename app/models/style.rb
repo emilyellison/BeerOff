@@ -5,7 +5,8 @@ class Style
   include Mongoid::Timestamps
   
   # Associations
-  belongs_to :category
+  belongs_to :category, foreign_key: :categoryId
+  has_many :beers, foreign_key: :styleId
     
   # Attributes
   field :name, type: String
@@ -22,5 +23,10 @@ class Style
   field :categoryId, type: Integer
   field :bd_id, type: Integer
   field :_id, type: Integer, default: ->{ bd_id }
+  
+  # Class Methods
+  def self.import
+    Importer.new(Style, BreweryDb.styles)
+  end
   
 end

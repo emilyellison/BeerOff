@@ -1,3 +1,5 @@
+# START SERVER WITH mongod --dbpath /usr/local/var/mongodb
+
 development:
   # Configure available database sessions. (required)
   sessions:

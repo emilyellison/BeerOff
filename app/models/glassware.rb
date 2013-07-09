@@ -1,11 +1,11 @@
-class Category
+class Glassware
   
   # Gems
   include Mongoid::Document
   include Mongoid::Timestamps
   
   # Associations
-  has_many :styles, foreign_key: :categoryId
+  has_many :beers, foreign_key: :glasswareId
   
   # Attributes
   field :name, type: String
@@ -14,7 +14,7 @@ class Category
   
   # Class Methods
   def self.import
-    Importer.new(Category, BreweryDb.categories)
+    Importer.new(Glassware, BreweryDb.glassware)
   end
   
 end
