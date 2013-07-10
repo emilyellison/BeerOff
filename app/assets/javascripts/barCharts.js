@@ -5,7 +5,7 @@
     var section = this[0];
   
     // Set width and height
-    var svgWidth = 700;
+    var svgWidth = 740;
     var svgHeight = 600;
     var svgPadding = 50;
   
