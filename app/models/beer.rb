@@ -47,5 +47,9 @@ class Beer
     end
   end
   
-    
+  # Instance Methods
+  def category
+    style.category
+  end
+  
 end

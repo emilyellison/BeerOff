@@ -1,0 +1,20 @@
+.categories
+  .index
+
+    %h1 Categories
+
+    .quarter.grid
+
+      .column
+        %ul.boxes.white
+          - @categories.each do |category|
+            %li{ 'data-no-turbolink' => true }= link_to category.name, category_path(category)
+        
+      .triple.column
+        
+        .graph
+    
+      .clear
+      
+:javascript
+  $('.graph').barFreqChart(gon.abvs);

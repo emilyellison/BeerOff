@@ -13,6 +13,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'thin'
 gem 'quiet_assets'
 gem 'haml-rails'
+gem 'gon'
 
 group :doc do
   gem 'sdoc', require: false

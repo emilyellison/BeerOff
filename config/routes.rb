@@ -1,5 +1,7 @@
 BeerOff::Application.routes.draw do
 
-  root 'public#index'
+  resources :categories, only: [ :index, :show ]
+
+  root 'categories#index'
 
 end

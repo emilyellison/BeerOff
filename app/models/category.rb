@@ -7,6 +7,9 @@ class Category
   # Associations
   has_many :styles, foreign_key: :categoryId
   
+  # Scopes
+  scope :alphabetic, -> { order_by('name asc') }
+  
   # Attributes
   field :name, type: String
   field :bd_id, type: Integer
@@ -15,6 +18,11 @@ class Category
   # Class Methods
   def self.import
     Importer.new(Category, BreweryDb.categories)
+  end
+  
+  # Instance Methods
+  def beers
+    Beer.in(styleId: styles.pluck(:bd_id))
   end
   
 end
