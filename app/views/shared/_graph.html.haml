@@ -1,0 +1,30 @@
+.categories
+  .index
+
+
+    .quarter.grid
+      
+      .column
+        %h2 Measurements
+        %ul.boxes.white
+          %li{ 'data-no-turbolink' => true }= link_to 'ABV', url_for(measure: "ABV"), class: "#{'active' if params[:measure].nil? || params[:measure] == "ABV"}"
+          %li{ 'data-no-turbolink' => true }= link_to 'IBU', url_for(measure: "IBU"), class: "#{'active' if params[:measure] == "IBU"}"
+        
+        %h2 Categories
+        %ul.boxes.white
+          %li{ 'data-no-turbolink' => true }= link_to 'All Categories', categories_path, class: "#{'active' if params[:controller] == 'categories' && params[:id].nil? }"
+          - @categories.each do |category|
+            %li{ 'data-no-turbolink' => true }= link_to category.name, category_path(category, measure: params[:measure]), class: "#{'active' if params[:controller] == 'categories' && params[:id] == category.id.to_s }"
+        
+      .triple.column
+        
+        .graph
+            
+      .clear
+      
+:javascript
+  if (gon.abvs) {
+    $('.graph').barFreqChart(gon.abvs, "ABV (%)", "Number of Beers")
+  } else if(gon.ibus.length) {
+    $('.graph').barFreqChart(gon.ibus, "IBU", "Number of Beers")
+  }
