@@ -2,7 +2,8 @@ class StatBot
   
   def initialize array, options = {}
     @numerify = options[:numerify]
-    @array   = normalize array
+    @round    = options[:round]
+    @array    = normalize array
   end
   
   def freqs     
@@ -22,7 +23,7 @@ class StatBot
     end
   
     def numerify array
-      array.map { |item| item.to_f.round(1) }.sort!
+      array.map { |item| item.to_f.round(@round) }.sort!
     end
   
 end
