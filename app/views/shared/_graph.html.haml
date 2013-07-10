@@ -2,13 +2,13 @@
   .index
 
 
-    .quarter.grid
+    .fifth.grid
       
       .column
-        %h2 Measurements
-        %ul.boxes.white
+        %ul.boxes.white.horizontal
           %li{ 'data-no-turbolink' => true }= link_to 'ABV', url_for(measure: "ABV"), class: "#{'active' if params[:measure].nil? || params[:measure] == "ABV"}"
           %li{ 'data-no-turbolink' => true }= link_to 'IBU', url_for(measure: "IBU"), class: "#{'active' if params[:measure] == "IBU"}"
+        .clear
         
         %h2 Categories
         %ul.boxes.white
@@ -16,7 +16,7 @@
           - @categories.each do |category|
             %li{ 'data-no-turbolink' => true }= link_to category.name, category_path(category, measure: params[:measure]), class: "#{'active' if params[:controller] == 'categories' && params[:id] == category.id.to_s }"
         
-      .triple.column
+      .quadruple.column
         
         .graph
             

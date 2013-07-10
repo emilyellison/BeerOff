@@ -6,8 +6,8 @@
   
     // Set width and height
     var svgWidth = 700;
-    var svgHeight = 550;
-    var svgPadding = 40;
+    var svgHeight = 600;
+    var svgPadding = 50;
   
     // Create the SVG Container
     var svg = d3.select(section).append("svg").attr("width", svgWidth).attr("height", svgHeight);
@@ -26,6 +26,7 @@
         .attr("text-anchor", "end")
         .attr("x", svgWidth )
         .attr("y", svgHeight - 5)
+        .attr("font-size", "16px")
         .text(xLabel);
   
     // Create the y-axis
@@ -42,6 +43,7 @@
         .attr("text-anchor", "end")
         .attr("y", 12)
         .attr("transform", "rotate(-90)")
+        .attr("font-size", "16px")
         .text(yLabel);
   
     // Set rectangle width and color
@@ -70,6 +72,7 @@
     // Add labels to each group
     var labels = groups.append('text');
     
+    // Add label attributes to labels
     var labelAttributes = labels.text(function(d) { return d.freq })
                                 .attr("x", function(d, i) { return xScale(d.measure) + svgPadding })
                                 .attr("y", function (d, i) { return yScale(d.freq) - 5})
