@@ -51,12 +51,16 @@
     var rectangles = svg.selectAll("rect").data(beerData).enter().append("rect");
     
     // Set rectangle attributes
-    var rectangleAttributes = rectangles.attr("x", function(d, i) { return xScale(d.measure) + svgPadding - rectangleWidth / 2 })
+    var rectangleAttributes = rectangles.attr("height", 0)
+                                        .attr("y", svgHeight - svgPadding)
+                                        .attr("fill", function(d) { return "rgb(40,0,0)" })
+                                        .transition()
+                                        .attr("x", function(d, i) { return xScale(d.measure) + svgPadding - rectangleWidth / 2 })
                                         .attr("y", function(d, i) { return  yScale(d.freq)})
                                         .attr("width", rectangleWidth)
                                         .attr("height", function (d, i) { return svgHeight - svgPadding - yScale(d.freq) })
-                                        .attr("fill", function(d) { return "rgb(" + rectangleColor(d.freq) + ",0,0)" });
+                                        .attr("fill", function(d) { return "rgb(" + rectangleColor(d.freq) + ",0,0)" })
+                                        .duration(2000);
           
-    
   } 
 }(jQuery));
