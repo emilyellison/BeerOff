@@ -55,12 +55,13 @@
                                         .attr("y", svgHeight - svgPadding)
                                         .attr("fill", function(d) { return "rgb(40,0,0)" })
                                         .transition()
+                                        .delay(function(d, i) { return i * 200 })
+                                        .duration(800)
                                         .attr("x", function(d, i) { return xScale(d.measure) + svgPadding - rectangleWidth / 2 })
                                         .attr("y", function(d, i) { return  yScale(d.freq)})
                                         .attr("width", rectangleWidth)
                                         .attr("height", function (d, i) { return svgHeight - svgPadding - yScale(d.freq) })
-                                        .attr("fill", function(d) { return "rgb(" + rectangleColor(d.freq) + ",0,0)" })
-                                        .duration(2000);
+                                        .attr("fill", function(d) { return "rgb(" + rectangleColor(d.freq) + ",0,0)" });
           
   } 
 }(jQuery));
