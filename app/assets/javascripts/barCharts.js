@@ -21,7 +21,7 @@
     svg.append("g").attr('class', 'axis').attr("transform", "translate(" + svgPadding + "," + (svgHeight - svgPadding) + ")").call(xAxis);
     
     // Add x-axis label
-    svg.append("text.label")
+    svg.append("text")
         .attr("class", "x-label")
         .attr("text-anchor", "end")
         .attr("x", svgWidth )
@@ -31,12 +31,13 @@
     // Create the y-axis
     var yMax   = d3.max($.map(beerData, function(d) { return d.freq; }));
     var yMin   = d3.min($.map(beerData, function(d) { return d.freq; }));
-    var yScale = d3.scale.linear().domain([0, yMax]).range([ svgHeight - svgPadding, 0]);
+    var yUnit  = yMax / 10;
+    var yScale = d3.scale.linear().domain([0, yMax + yUnit]).range([ svgHeight - svgPadding, 0 ]);
     var yAxis  = d3.svg.axis().scale(yScale).orient("left").ticks(10);
     svg.append("g").attr('class', 'axis').attr("transform", "translate(" + svgPadding + ", 0)").call(yAxis);
     
     // Add y-axis label
-    svg.append("text.label")
+    svg.append("text")
         .attr("class", "y-label")
         .attr("text-anchor", "end")
         .attr("y", 12)
@@ -47,8 +48,11 @@
     rectangleWidth = (svgWidth - svgPadding) / (xMax + xUnit);
     function rectangleColor(freq) { return Math.round((140 - 40)/(yMax - yMin))*freq + 40};
   
-    // Add rectangles for each data point                   
-    var rectangles = svg.selectAll("rect").data(beerData).enter().append("rect");
+    // Add groups for each data point                   
+    var groups = svg.selectAll(".node").data(beerData).enter().append("g");
+    
+    // Add rectangles to each group
+    var rectangles = groups.append("rect");
     
     // Set rectangle attributes
     var rectangleAttributes = rectangles.attr("height", 0)
@@ -62,6 +66,26 @@
                                         .attr("width", rectangleWidth)
                                         .attr("height", function (d, i) { return svgHeight - svgPadding - yScale(d.freq) })
                                         .attr("fill", function(d) { return "rgb(" + rectangleColor(d.freq) + ",0,0)" });
-
+    
+    // Add labels to each group
+    var labels = groups.append('text');
+    
+    var labelAttributes = labels.text(function(d) { return d.freq })
+                                .attr("x", function(d, i) { return xScale(d.measure) + svgPadding })
+                                .attr("y", function (d, i) { return yScale(d.freq) - 5})
+                                .attr("text-anchor", "middle")
+                                .classed("hidden", true);
+    
+    // Only show labels on hover
+    groups.on("mouseover", function() { 
+      d3.select(this).selectAll('rect').style('opacity', 0.8); 
+      d3.select(this).selectAll('text').classed("hidden", false); 
+    });
+    
+    groups.on("mouseleave", function() { 
+      d3.select(this).selectAll('rect').style('opacity', 1); 
+      d3.select(this).selectAll('text').classed("hidden", true); 
+    });
+       
   } 
 }(jQuery));
