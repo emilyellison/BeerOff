@@ -21,7 +21,7 @@
     svg.append("g").attr('class', 'axis').attr("transform", "translate(" + svgPadding + "," + (svgHeight - svgPadding) + ")").call(xAxis);
     
     // Add x-axis label
-    svg.append("text")
+    svg.append("text.label")
         .attr("class", "x-label")
         .attr("text-anchor", "end")
         .attr("x", svgWidth )
@@ -36,10 +36,10 @@
     svg.append("g").attr('class', 'axis').attr("transform", "translate(" + svgPadding + ", 0)").call(yAxis);
     
     // Add y-axis label
-    svg.append("text")
+    svg.append("text.label")
         .attr("class", "y-label")
         .attr("text-anchor", "end")
-        .attr("y", 14)
+        .attr("y", 12)
         .attr("transform", "rotate(-90)")
         .text(yLabel);
   
@@ -62,6 +62,6 @@
                                         .attr("width", rectangleWidth)
                                         .attr("height", function (d, i) { return svgHeight - svgPadding - yScale(d.freq) })
                                         .attr("fill", function(d) { return "rgb(" + rectangleColor(d.freq) + ",0,0)" });
-          
+
   } 
 }(jQuery));

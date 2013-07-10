@@ -1,4 +1,4 @@
-# Import status: 0 - 400
+# Import status: 0 - 490
 
 class Beer
   
