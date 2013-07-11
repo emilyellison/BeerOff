@@ -63,10 +63,13 @@
     function circleRadius(y) { return y * 3 };
     
     // Set circle attributes
-    var circleAttributes = circles.attr("cx", function(d) { return xScale(d.x) + svgPadding })
+    var circleAttributes = circles.attr("r", 0)
+                                  .transition()
+                                  .attr("cx", function(d) { return xScale(d.x) + svgPadding })
                                   .attr("cy", function(d) { return yScale(d.y) })
                                   .attr("r", function(d) { return circleRadius(d.freq) })
-                                  .attr("fill", function(d) { return "rgb(" + circleColor(d.freq) + ",0,0)" } );
+                                  .attr("fill", function(d) { return "rgb(" + circleColor(d.freq) + ",0,0)" } )
+                                  .duration(1600);
       
     // Add labels to each group
     var labels = groups.append('text');
