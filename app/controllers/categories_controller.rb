@@ -1,17 +1,16 @@
 class CategoriesController < ApplicationController
   
   before_filter :fetch_categories
+  before_filter :determine_method
   
   def index
-    method = params[:measure] || 'abv'
-    @beers = Beer.send(method.parameterize.underscore.downcase)
+    @beers = Beer.send(@method.parameterize.underscore.downcase)
     fetch_data_for(@beers) if @beers.present?
   end
   
   def show
     @category = Category.find(params[:id])
-    method = params[:measure] || 'abv'
-    @beers = @category.beers.send(method.parameterize.underscore.downcase)
+    @beers = @category.beers.send(@method.parameterize.underscore.downcase)
     fetch_data_for(@beers) if @beers.present?
   end
   
@@ -19,6 +18,10 @@ class CategoriesController < ApplicationController
   
     def fetch_categories
       @categories = Category.alphabetic.all
+    end
+    
+    def determine_method
+      @method = params[:measure] || 'abv'
     end
     
     def fetch_data_for(beers)
