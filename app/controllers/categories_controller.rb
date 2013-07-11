@@ -3,20 +3,14 @@ class CategoriesController < ApplicationController
   before_filter :fetch_categories
   
   def index
-    if params[:measure] == "IBU"
-      gon.ibus = StatBot.new(Beer.pluck(:ibu), numerify: true, round: 0).freqs
-    else
-      gon.abvs = StatBot.new(Beer.pluck(:abv), numerify: true, round: 0).freqs
-    end
+    method = params[:measure] || 'abv'
+    gon.beerData = StatBot.new(Beer.send(method.downcase), x_label: params[:measure], y_label: 'Number of Beers').one_way_freq
   end
   
   def show
     @category = Category.find(params[:id])
-    if params[:measure] == "IBU"
-      gon.ibus = StatBot.new(@category.beers.pluck(:ibu), numerify: true, round: 0).freqs
-    else
-      gon.abvs = StatBot.new(@category.beers.pluck(:abv), numerify: true, round: 0).freqs
-    end
+    method = params[:measure] || 'abv'
+    gon.beerData = StatBot.new(@category.beers.send(method.downcase), x_label: params[:measure], y_label: 'Number of Beers').one_way_freq
   end
   
   private

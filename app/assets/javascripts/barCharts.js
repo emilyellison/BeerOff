@@ -1,5 +1,10 @@
 (function($) {
-  $.fn.barFreqChart = function(beerData, xLabel, yLabel) {    
+  $.fn.barFreqChart = function(data) {    
+    
+    // Find the data
+    var beerData = data['data'];
+    var xLabel = data['x_label'];
+    var yLabel = data['y_label'];
     
     // Find the element    
     var section = this[0];

@@ -1,4 +1,4 @@
-# Import status: 0 - 490
+# Import status: 0 - 800
 
 class Beer
   
@@ -30,6 +30,19 @@ class Beer
   field :_id, type: String, default: ->{ bd_id }
   
   # Class Methods  
+  def self.abv
+    self.pluck(:abv)
+  end
+  
+  def self.ibu
+    self.pluck(:ibu)
+  end
+  
+  def self.srm
+    self.pluck(:srm).map{ |x| x['name'][/\d+/] }
+  end
+  
+  # Importing Beers
   def self.import_for_brewery brewery_id
     page = 1
     importer = { 'current_page' => 0, 'number_of_pages' => 1 }
