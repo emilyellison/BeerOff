@@ -51,6 +51,14 @@ class Beer
     self.has_abv.has_ibu.pluck(:abv, :ibu)
   end
   
+  def self.abv_and_srm
+    self.has_abv.has_srm.map { |x| [ x.abv, x.srm['name'][/\d+/] ] }
+  end
+  
+  def self.srm_and_ibu
+    self.has_srm.has_ibu.map { |x| [ x.srm['name'][/\d+/], x.ibu ] }
+  end
+  
   # Importing Beers
   def self.import_for_brewery brewery_id
     page = 1
