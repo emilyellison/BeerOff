@@ -11,6 +11,11 @@ class Beer
   belongs_to :brewery, foreign_key: :breweryId
   belongs_to :glassware, foreign_key: :glasswareId
       
+  # Scopes
+  scope :has_abv, where(:abv.ne => "", :abv.exists => true) 
+  scope :has_ibu, where(:ibu.ne => "", :ibu.exists => true) 
+  scope :has_srm, where(:srm.ne => "", :srm.exists => true) 
+      
   # Attributes
   field :name, type: String
   field :description, type: String
@@ -40,6 +45,10 @@ class Beer
   
   def self.srm
     self.pluck(:srm).map{ |x| x['name'][/\d+/] }
+  end
+  
+  def self.abv_and_ibu
+    self.has_abv.has_ibu.pluck(:abv, :ibu)
   end
   
   # Importing Beers

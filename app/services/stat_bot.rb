@@ -3,25 +3,31 @@ class StatBot
   def initialize array, options = {}
     @numerify = true || options[:numerify]
     @round    = 0 || options[:round]
-    @x_label  = options[:x_label]
-    @y_label  = options[:y_label]
+    if array.first.class == String
+      @dimensions = 1
+    elsif array.first.class == Array
+      @dimensions = 2
+    end
     @array    = normalize array
+    @data     = Hash.new
+    @data[:x_label] = options[:x_label]
+    @data[:y_label] = options[:y_label]
   end
   
-  def freqs     
+  def one_way_freq     
     counts = Hash.new(0)
     @array.each { |item| counts[item] += 1 }
-    counts.keys.map { |key| { measure: key, freq: counts[key] } }
+    @data[:data] = counts.keys.map { |key| { x: key, y: counts[key] } }
+    return @data
   end
   
-  def one_way_freq
-    hash = Hash.new
-    hash[:x_label] = @x_label
-    hash[:y_label] = @y_label
-    hash[:data] = freqs
-    return hash
+  def two_way_freq
+    counts = Hash.new(0)
+    @array.each { |item| counts[item] += 1 }
+    @data[:data] = counts.keys.map { |key| { x: key[0], y: key[1], freq: counts[key] } }
+    return @data
   end
-  
+      
   private
   
     def normalize array
@@ -33,7 +39,12 @@ class StatBot
     end
   
     def numerify array
-      array.map { |item| item.to_f.round(@round) }.sort!
+      if @dimensions == 1
+        numerified = array.map { |item| item.to_f.round(@round) }.sort!
+      elsif @dimensions == 2
+        numerified = array.map{ |x| x.map{ |y| y.index(".").present? ? y.to_f : y.to_i } }.sort_by(&:first)
+      end
+      return numerified
     end
-  
+      
 end

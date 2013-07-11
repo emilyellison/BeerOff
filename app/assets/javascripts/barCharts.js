@@ -18,8 +18,8 @@
     var svg = d3.select(section).append("svg").attr("width", svgWidth).attr("height", svgHeight);
   
     // Create the x-axis
-    var xMax   = d3.max($.map(beerData, function(d) { return d.measure; }));
-    var xMin   = d3.min($.map(beerData, function(d) { return d.measure; }));
+    var xMax   = d3.max($.map(beerData, function(d) { return d.x; }));
+    var xMin   = d3.min($.map(beerData, function(d) { return d.x; }));
     var xUnit  = xMax / 10;
     var xScale = d3.scale.linear().domain([0, xMax + xUnit]).range([0, svgWidth]);
     var xAxis  = d3.svg.axis().scale(xScale).orient("bottom").ticks(10);
@@ -35,8 +35,8 @@
         .text(xLabel);
   
     // Create the y-axis
-    var yMax   = d3.max($.map(beerData, function(d) { return d.freq; }));
-    var yMin   = d3.min($.map(beerData, function(d) { return d.freq; }));
+    var yMax   = d3.max($.map(beerData, function(d) { return d.y; }));
+    var yMin   = d3.min($.map(beerData, function(d) { return d.y; }));
     var yUnit  = yMax / 10;
     var yScale = d3.scale.linear().domain([0, yMax + yUnit]).range([ svgHeight - svgPadding, 0 ]);
     var yAxis  = d3.svg.axis().scale(yScale).orient("left").ticks(10);
@@ -53,7 +53,7 @@
   
     // Set rectangle width and color
     rectangleWidth = (svgWidth - svgPadding) / (xMax + xUnit);
-    function rectangleColor(freq) { return Math.round((140 - 40)/(yMax - yMin))*freq + 40};
+    function rectangleColor(y) { return Math.round((140 - 40)/(yMax - yMin))*y + 40};
   
     // Add groups for each data point                   
     var groups = svg.selectAll(".node").data(beerData).enter().append("g");
@@ -68,19 +68,19 @@
                                         .transition()
                                         .delay(function(d, i) { return i * 200 })
                                         .duration(800)
-                                        .attr("x", function(d, i) { return xScale(d.measure) + svgPadding - rectangleWidth / 2 })
-                                        .attr("y", function(d, i) { return  yScale(d.freq)})
+                                        .attr("x", function(d, i) { return xScale(d.x) + svgPadding - rectangleWidth / 2 })
+                                        .attr("y", function(d, i) { return  yScale(d.y)})
                                         .attr("width", rectangleWidth)
-                                        .attr("height", function (d, i) { return svgHeight - svgPadding - yScale(d.freq) })
-                                        .attr("fill", function(d) { return "rgb(" + rectangleColor(d.freq) + ",0,0)" });
+                                        .attr("height", function (d, i) { return svgHeight - svgPadding - yScale(d.y) })
+                                        .attr("fill", function(d) { return "rgb(" + rectangleColor(d.y) + ",0,0)" });
     
     // Add labels to each group
     var labels = groups.append('text');
     
     // Add label attributes to labels
-    var labelAttributes = labels.text(function(d) { return d.freq })
-                                .attr("x", function(d, i) { return xScale(d.measure) + svgPadding })
-                                .attr("y", function (d, i) { return yScale(d.freq) - 5})
+    var labelAttributes = labels.text(function(d) { return d.y })
+                                .attr("x", function(d, i) { return xScale(d.x) + svgPadding })
+                                .attr("y", function (d, i) { return yScale(d.y) - 5})
                                 .attr("text-anchor", "middle")
                                 .classed("hidden", true);
     
