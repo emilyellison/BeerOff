@@ -15,6 +15,7 @@ gem 'thin'
 gem 'quiet_assets'
 gem 'haml-rails'
 gem 'gon'
+gem 'rails_12factor'
 
 group :doc do
   gem 'sdoc', require: false
