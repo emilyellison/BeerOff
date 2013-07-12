@@ -17,6 +17,7 @@ gem 'haml-rails'
 gem 'gon'
 gem 'rails_12factor'
 gem 'mongo'
+gem 'bson_ext'
 
 group :doc do
   gem 'sdoc', require: false
