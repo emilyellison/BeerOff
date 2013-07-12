@@ -1,4 +1,4 @@
-# Import status: 0 - 800
+# Import status: 0 - 1263
 
 class Beer
   
@@ -81,5 +81,8 @@ class Beer
   def category
     style.category
   end
+  
+  # Data cleaning
+  # Beer.where(:abv => '61', bd_id: "9xaRRt").to_a.first.update_attributes(abv: '6.1')
   
 end

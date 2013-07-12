@@ -75,8 +75,8 @@
     var labels = groups.append('text');
     // 
     // Add label attributes to labels
-    var labelAttributes = labels.text(function(d) { return d.x + ", " + d.y })
-                                .attr("x", function(d, i) { return xScale(d.x) + svgPadding - 10 })
+    var labelAttributes = labels.text(function(d) { return d.freq })
+                                .attr("x", function(d, i) { return xScale(d.x) + svgPadding })
                                 .attr("y", function (d, i) { return yScale(d.y) - 15})
                                 .attr("text-anchor", "middle")
                                 .classed("hidden", true);
