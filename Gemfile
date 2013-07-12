@@ -16,6 +16,7 @@ gem 'quiet_assets'
 gem 'haml-rails'
 gem 'gon'
 gem 'rails_12factor'
+gem 'mongo'
 
 group :doc do
   gem 'sdoc', require: false
