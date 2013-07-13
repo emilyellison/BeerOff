@@ -12,14 +12,14 @@ class Beer
   belongs_to :glassware, foreign_key: :glasswareId
       
   # Scopes
-  scope :has_abv, where(:abv.ne => "", :abv.exists => true) 
-  scope :has_ibu, where(:ibu.ne => "", :ibu.exists => true) 
-  scope :has_srm, where(:srm.ne => "", :srm.exists => true) 
+  scope :has_abv, all_of(:abv.ne => nil)
+  scope :has_ibu, all_of(:ibu.ne => nil)
+  scope :has_srm, all_of(:srm.ne => nil)
       
   # Attributes
   field :name, type: String
   field :description, type: String
-  field :available, type: String
+  field :available, type: Hash
   field :status, type: String
   field :servingTemperature, type: String
   field :originalGravity, type: String
