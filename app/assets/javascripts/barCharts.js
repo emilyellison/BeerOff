@@ -28,9 +28,9 @@
     // Add x-axis label
     svg.append("text")
         .attr("class", "x-label")
-        .attr("text-anchor", "end")
         .attr("x", svgWidth )
         .attr("y", svgHeight - 5)
+        .attr("text-anchor", "end")
         .attr("font-size", "16px")
         .text(xLabel);
   
@@ -45,21 +45,21 @@
     // Add y-axis label
     svg.append("text")
         .attr("class", "y-label")
-        .attr("text-anchor", "end")
         .attr("y", 12)
+        .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
         .attr("font-size", "16px")
         .text(yLabel);
-  
-    // Set rectangle width and color
-    rectangleWidth = (svgWidth - svgPadding) / (xMax + xUnit);
-    function rectangleColor(y) { return Math.round((140 - 40)/(yMax - yMin))*y + 40};
-  
+    
     // Add groups for each data point                   
     var groups = svg.selectAll(".node").data(beerData).enter().append("g");
     
     // Add rectangles to each group
     var rectangles = groups.append("rect");
+    
+    // Set rectangle width and color
+    rectangleWidth = (svgWidth - svgPadding) / (xMax + xUnit);
+    function rectangleColor(y) { return Math.round((140 - 40)/(yMax - yMin))*y + 40};
     
     // Set rectangle attributes
     var rectangleAttributes = rectangles.attr("height", 0)

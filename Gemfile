@@ -17,6 +17,7 @@ gem 'haml-rails'
 gem 'gon'
 gem 'mongo'
 gem 'bson_ext'
+gem 'kaminari'
 
 group :production do 
   gem 'rails_12factor'

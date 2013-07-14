@@ -1,0 +1,31 @@
+%h1
+  .pull-left 
+    Beers
+  
+  .pull-right
+    = form_tag beers_path, method: :get, class: 'inline' do
+      = text_field_tag :query
+      = submit_tag "SEARCH", class: 'submit'
+  .clear
+
+%table
+  %thead
+    %tr
+      %th Beer
+      %th ABV
+      %th IBU
+      %th SRM
+      %th Description
+      %th Tags
+      
+  %tbody
+    - @beers.each do |beer|
+      %tr
+        %td= beer.name
+        %td= beer.abv
+        %td= beer.ibu
+        %td{ style: "background-color: ##{beer.srm.try(:[], "hex")}" }
+        %td= beer.description
+        %td
+
+= paginate @beers

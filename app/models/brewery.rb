@@ -1,3 +1,5 @@
+# Imported since 1940
+
 class Brewery
   
   # Gems
@@ -30,6 +32,7 @@ class Brewery
     end
   end
   
+  # Example - (2000..2013).to_a
   def self.import_for_years year_array
     year_array.each do |year|
       self.import_for_year year

@@ -13,6 +13,7 @@ class Importer
   
   def validate
     raise ArgumentError, "Can only import beers, breweries, glassware, categories, and styles" if ![ Category, Style, Beer, Brewery, Glassware ].include?(@class_name)
+    raise ArgumentError, "No data available" if ![ Beer, Brewery ].include?(@class_name) && @number_of_pages.nil?
   end
   
   def normalize
