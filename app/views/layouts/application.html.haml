@@ -12,6 +12,8 @@
     %header
       .container
         %span{ 'data-no-turbolink' => true }= link_to 'BeerOff', root_path, class: 'brand'
+        %ul.nav
+          %li= link_to 'Beers', beers_path
         
     .content
       .container
