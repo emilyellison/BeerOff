@@ -18,6 +18,7 @@ gem 'gon'
 gem 'mongo'
 gem 'bson_ext'
 gem 'kaminari'
+gem 'mongoid-tags-arent-hard'
 
 group :production do 
   gem 'rails_12factor'

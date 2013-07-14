@@ -5,6 +5,9 @@ class Beer
   # Gems
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::TagsArentHard
+  
+  taggable_with :tags
   
   # Associations
   belongs_to :style, foreign_key: :styleId
