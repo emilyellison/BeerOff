@@ -24,7 +24,7 @@
         %td= beer.name
         %td= beer.abv? ? "#{beer.abv}%" : ""
         %td= beer.ibu
-        %td{ style: "background-color: ##{beer.srm.try(:[], "hex")}; color: #{beer.srm.try(:[], "id").to_i > 35 ? "white" : "black"}" }= beer.srm.try(:[], "name")
+        %td{ style: "background-color: ##{beer.srm.try(:[], "hex")}; color: #{beer.srm.try(:[], "id").to_i >= 30 ? "white" : "black"}" }= beer.srm.try(:[], "name")
         %td= beer.description
         %td
           - beer.tags.sort.each do |tag|
