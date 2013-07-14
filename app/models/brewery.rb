@@ -32,6 +32,10 @@ class Brewery
     end
   end
   
+  def self.search_for(query)
+    any_of({name: /.*#{query}.*/i})
+  end
+  
   # Example - (2000..2013).to_a
   def self.import_for_years year_array
     year_array.each do |year|

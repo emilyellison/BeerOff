@@ -1,0 +1,31 @@
+%h1
+  .pull-left 
+    Breweries
+  
+  .pull-right
+    = form_tag breweries_path, method: :get, class: 'inline' do
+      = text_field_tag :query, nil, placeholder: 'Search by brewery name'
+      = submit_tag "SEARCH", class: 'submit'
+  .clear
+
+%table
+  %thead
+    %tr
+      %th Brewery
+      %th Number of Beers
+      %th Established
+      %th Description
+      %th Links
+      
+  %tbody
+    - @breweries.each do |brewery|
+      %tr
+        %td= brewery.name
+        %td= brewery.beers.count
+        %td= brewery.established
+        %td= brewery.description
+        %td
+          = link_to 'Website', brewery.website
+          = link_to 'BreweryDB', "http://www.brewerydb.com/brewery/#{brewery.bd_id}"
+
+= paginate @breweries
