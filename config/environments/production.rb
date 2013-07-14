@@ -28,7 +28,8 @@ BeerOff::Application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  # Update to true for heroku
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true
