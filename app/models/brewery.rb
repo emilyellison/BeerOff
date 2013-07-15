@@ -1,4 +1,5 @@
-# Imported since 1940
+# Production: Imported since 1940
+# Development: Imported since 1940
 
 class Brewery
   
@@ -41,6 +42,11 @@ class Brewery
     year_array.each do |year|
       self.import_for_year year
     end
+  end
+  
+  # Instance Methods
+  def brewery_db_url
+    "http://www.brewerydb.com/brewery/#{bd_id}"
   end
   
 end

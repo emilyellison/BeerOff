@@ -1,0 +1,26 @@
+%h1
+  .pull-left 
+    = @brewery.name
+
+  .pull-right
+    = form_tag brewery_path(@brewery), method: :get, class: 'inline' do
+      = text_field_tag :query, nil, placeholder: 'Search beers'
+      = submit_tag "SEARCH", class: 'submit'
+  .clear
+
+.white.wrapper
+  
+  %p= @brewery.description
+  
+  .pull-left
+    = link_to 'Website', @brewery.website
+    |
+    = link_to 'Brewery DB', @brewery_db_url
+    
+  .pull-right
+    Established
+    = @brewery.established
+  
+  .clear
+
+= render 'beers/beers'

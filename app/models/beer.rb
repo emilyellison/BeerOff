@@ -1,4 +1,5 @@
-# Import status: 0 - 1263
+# Development: Up to Brewery #1660
+# Production: Up to Brewery #1660
 
 class Beer
   
@@ -15,6 +16,7 @@ class Beer
   belongs_to :glassware, foreign_key: :glasswareId
       
   # Scopes
+  default_scope order_by('created_at asc') 
   scope :has_abv, all_of(:abv.ne => nil)
   scope :has_ibu, all_of(:ibu.ne => nil)
   scope :has_srm, all_of(:srm.ne => nil)

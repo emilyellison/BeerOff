@@ -1,0 +1,23 @@
+%table
+  %thead
+    %tr
+      %th Beer
+      %th ABV
+      %th IBU
+      %th SRM
+      %th Description
+      %th Tags
+      
+  %tbody
+    - @beers.each do |beer|
+      %tr
+        %td= beer.name
+        %td= beer.abv? ? "#{beer.abv}%" : ""
+        %td= beer.ibu
+        %td{ style: "background-color: ##{beer.srm.try(:[], "hex")}; color: #{beer.srm.try(:[], "id").to_i >= 30 ? "white" : "black"}" }= beer.srm.try(:[], "name")
+        %td= beer.description
+        %td
+          - beer.tags.sort.each do |tag|
+            %div{ class: "tag #{tag.downcase}"}= tag
+
+= paginate @beers

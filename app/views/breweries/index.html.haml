@@ -20,12 +20,12 @@
   %tbody
     - @breweries.each do |brewery|
       %tr
-        %td= brewery.name
+        %td= link_to brewery.name, brewery_path(brewery)
         %td= brewery.beers.count
         %td= brewery.established
         %td= brewery.description
         %td
           = link_to 'Website', brewery.website
-          = link_to 'BreweryDB', "http://www.brewerydb.com/brewery/#{brewery.bd_id}"
+          = link_to 'BreweryDB', brewery.brewery_db_url
 
 = paginate @breweries
