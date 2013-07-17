@@ -2,7 +2,7 @@ class BreweriesController < ApplicationController
   
   def index
     @breweries = Brewery.search_for(params[:query]).page(params[:page]).per(10)
-    # @breweries = Brewery.offset(1905)
+    # @breweries = Brewery.offset(2152)
     # render :json => @breweries 
   end
   

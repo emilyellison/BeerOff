@@ -52,13 +52,13 @@
         .text(yLabel);
     
     // Add groups for each data point                   
-    var groups = svg.selectAll(".node").data(beerData).enter().append("g");
+    var groups = svg.selectAll(".kangaroo").data(beerData).enter().append("g");
     
     // Add rectangles to each group
     var rectangles = groups.append("rect");
     
     // Set rectangle width and color
-    rectangleWidth = (svgWidth - svgPadding) / (xMax + xUnit);
+    var rectangleWidth = (svgWidth - svgPadding) / (xMax + xUnit);
     function rectangleColor(y) { return Math.round((140 - 40)/(yMax - yMin))*y + 40};
     
     // Set rectangle attributes
@@ -69,7 +69,7 @@
                                         .delay(function(d, i) { return i * 200 })
                                         .duration(800)
                                         .attr("x", function(d, i) { return xScale(d.x) + svgPadding - rectangleWidth / 2 })
-                                        .attr("y", function(d, i) { return  yScale(d.y)})
+                                        .attr("y", function(d, i) { return yScale(d.y) })
                                         .attr("width", rectangleWidth)
                                         .attr("height", function (d, i) { return svgHeight - svgPadding - yScale(d.y) })
                                         .attr("fill", function(d) { return "rgb(" + rectangleColor(d.y) + ",0,0)" });

@@ -1,5 +1,5 @@
-# Development: Up to Brewery #1660
-# Production: Up to Brewery #1660
+# Development: Up to Brewery #1905
+# Production: Up to Brewery #1905
 
 class Beer
   
@@ -50,6 +50,10 @@ class Beer
   
   def self.srm
     self.pluck(:srm).map{ |x| x['name'][/\d+/] }
+  end
+  
+  def self.traits
+    self.pluck(:tags).flatten
   end
   
   def self.abv_and_ibu

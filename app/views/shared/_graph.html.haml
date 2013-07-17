@@ -6,6 +6,9 @@
       
       .column
         %h3 One Way
+        %ul.boxes.white
+          %li= link_to 'Traits', url_for(measure: "Traits"), class: is_measuring?("Traits", params)
+        
         %ul.boxes.white.horizontal
           %li= link_to 'ABV', url_for(measure: "ABV"), class: is_measuring?("ABV", params)
           %li= link_to 'IBU', url_for(measure: "IBU"), class: is_measuring?("IBU", params)
@@ -40,6 +43,9 @@
   }
   
   if (gon.twoWay) {
-    $('.graph').scatterPlot(gon.twoWay)
-    
+    $('.graph').scatterPlot(gon.twoWay) 
+  }
+  
+  if (gon.bubble) {
+    $('.graph').bubbleChart(gon.bubble) 
   }
