@@ -21,11 +21,11 @@ class CategoriesController < ApplicationController
     end
     
     def determine_method
-      @method = params[:measure] || 'abv'
+      @method = params[:measure] || 'traits'
     end
     
     def fetch_data_for(beers)
-      if params[:measure] == 'Traits'
+      if params[:measure] == 'Traits' || params[:measure].nil?
         gon.bubble = StatBot.new(@beers, numerify: 'false').bubble_freq
       elsif params[:measure].present? && params[:measure].index('and').present?
         gon.twoWay = StatBot.new(@beers, x_label: params[:measure].split(' ').first, y_label: params[:measure].split(' ').last).two_way_freq

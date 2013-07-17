@@ -29,8 +29,11 @@
           .text(function(d) { return d.className + ': '+  d.value; });
 
       node.append("circle")
+          .attr("r", 0)
+          .transition()
           .attr("r", function(d) { return d.r; })
-          .attr("class", function(d) { return d.className.toLowerCase();});
+          .attr("class", function(d) { return d.className.toLowerCase();})
+          .duration(1000);
 
       node.append("text")
           .attr("dy", ".3em")

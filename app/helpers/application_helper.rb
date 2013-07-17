@@ -7,7 +7,7 @@ module ApplicationHelper
   end
   
   def is_default_measure?(measure, params)
-    params[:measure].nil? && measure == 'ABV'
+    params[:measure].nil? && measure == 'Traits'
   end
   
   # Active Category
